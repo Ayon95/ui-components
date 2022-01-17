@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Carousel</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="main-title">Image carousel</h1>
+      <div class="carousel">
+        <button class="btn btn--prev"><</button>
+        <div class="image-view">
+          <img
+            src="./images/cheetah.jpg"
+            alt="cheetah in the savannah"
+            class="image image--visible"
+            data-image-index="0"
+          />
+          <img
+            src="./images/jaguar.jpg"
+            alt="a jaguar resting on a rock"
+            class="image"
+            data-image-index="1"
+          />
+          <img
+            src="./images/lion.jpg"
+            alt="a male lion and a cub"
+            class="image"
+            data-image-index="2"
+          />
+          <img
+            src="./images/snow-leopard.jpg"
+            alt="two snow leopards"
+            class="image"
+            data-image-index="3"
+          />
+        </div>
+        <button class="btn btn--next">></button>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
