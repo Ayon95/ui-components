@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Modal</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="main-title">Accessible modal</h1>
+      <button class="btn">Open modal</button>
+    </main>
+    <div
+      class="modal hidden"
+      role="dialog"
+      aria-labelledby="modal__title"
+      aria-describedby="modal__description"
+    >
+      <div class="overlay">
+        <div class="overlay__header">
+          <h2 class="overlay__title" id="modal__title">Modal title</h2>
+          <!-- screen readers will say 'close' instead of 'times' when interacting with this button -->
+          <button class="btn-close" aria-label="close">&times;</button>
+        </div>
+        <div class="overlay__content">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore
+            minus, eos porro inventore reiciendis aliquam omnis? Facere hic
+            nostrum rem laudantium, velit enim tempore, labore sunt autem
+            repudiandae at excepturi.
+          </p>
+        </div>
+      </div>
+      <p id="modal__description" hidden>Information provided by the modal</p>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
