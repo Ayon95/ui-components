@@ -1,4 +1,4 @@
-const hamburgerButton = document.querySelector(".nav__hamburger-btn");
+const hamburgerButton = document.getElementById("nav__hamburger-btn");
 const topBar = document.getElementById("bar--top");
 const bottomBar = document.getElementById("bar--bottom");
 const leftHalfBar = document.querySelector(".bar--left");
@@ -13,6 +13,11 @@ function toggleHamburgerMenuAndButton() {
   leftHalfBar.classList.toggle("disappear-to-left");
   rightHalfBar.classList.toggle("disappear-to-right");
   navMenu.classList.toggle("enter-screen-from-right");
+
+  hamburgerButton.ariaExpanded =
+    hamburgerButton.ariaExpanded === "true" ? "false" : "true";
+
+  navMenu.ariaHidden = navMenu.ariaHidden === "true" ? "false" : "true";
 }
 
 function handleClickNavLink(e) {
@@ -23,5 +28,12 @@ function handleClickNavLink(e) {
   }
 }
 
+function handleEscapeKeypress(e) {
+  if (e.key !== "Escape") return;
+  const hamburgerMenuIsOpen = hamburgerButton.ariaExpanded === "true";
+  if (hamburgerMenuIsOpen) toggleHamburgerMenuAndButton();
+}
+
 hamburgerButton.addEventListener("click", toggleHamburgerMenuAndButton);
 navMenu.addEventListener("click", handleClickNavLink);
+document.addEventListener("keydown", handleEscapeKeypress);
