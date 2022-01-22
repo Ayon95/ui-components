@@ -8,6 +8,29 @@ const navLinks = document.getElementsByClassName("nav__link");
 
 const mediaQueryMediumAndUp = window.matchMedia("(min-width: 56.25em)");
 
+const navMenuFocusableElements =
+  document.querySelectorAll("button, .nav__link");
+
+const firstFocusableElement = navMenuFocusableElements[0];
+const lastFocusableElement =
+  navMenuFocusableElements[navMenuFocusableElements.length - 1];
+
+// this function will trap focus within the hamburger menu
+function manageNavMenuFocus(e) {
+  if (e.key !== "Tab") return;
+  if (e.shiftKey) {
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus();
+      e.preventDefault();
+    }
+  } else {
+    if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
+      e.preventDefault();
+    }
+  }
+}
+
 function toggleHamburgerMenuAndButton() {
   topBar.classList.toggle("rotate-down");
   bottomBar.classList.toggle("rotate-up");
@@ -35,8 +58,7 @@ function handleClickNavLink(e) {
 
 function handleEscapeKeypress(e) {
   if (e.key !== "Escape") return;
-  const hamburgerMenuIsOpen = hamburgerButton.ariaExpanded === "true";
-  if (hamburgerMenuIsOpen) toggleHamburgerMenuAndButton();
+  toggleHamburgerMenuAndButton();
 }
 
 function setInitialStateForHamburgerMenu() {
@@ -49,7 +71,14 @@ function setInitialStateForHamburgerMenu() {
 
 hamburgerButton.addEventListener("click", toggleHamburgerMenuAndButton);
 navMenu.addEventListener("click", handleClickNavLink);
-document.addEventListener("keydown", handleEscapeKeypress);
+
+document.addEventListener("keydown", function (e) {
+  const navMenuIsOpen = hamburgerButton.ariaExpanded === "true";
+  if (navMenuIsOpen) {
+    handleEscapeKeypress(e);
+    manageNavMenuFocus(e);
+  }
+});
 
 if (!mediaQueryMediumAndUp.matches) {
   setInitialStateForHamburgerMenu();
