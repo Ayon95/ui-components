@@ -4,6 +4,7 @@ const bottomBar = document.getElementById("bar--bottom");
 const leftHalfBar = document.querySelector(".bar--left");
 const rightHalfBar = document.querySelector(".bar--right");
 const navMenu = document.querySelector(".nav__list");
+const navLinks = document.getElementsByClassName("nav__link");
 
 const mediaQueryMediumAndUp = window.matchMedia("(min-width: 56.25em)");
 
@@ -18,6 +19,10 @@ function toggleHamburgerMenuAndButton() {
     hamburgerButton.ariaExpanded === "true" ? "false" : "true";
 
   navMenu.ariaHidden = navMenu.ariaHidden === "true" ? "false" : "true";
+
+  for (const link of navLinks) {
+    link.tabIndex = link.tabIndex === -1 ? 0 : -1;
+  }
 }
 
 function handleClickNavLink(e) {
@@ -34,6 +39,18 @@ function handleEscapeKeypress(e) {
   if (hamburgerMenuIsOpen) toggleHamburgerMenuAndButton();
 }
 
+function setInitialStateForHamburgerMenu() {
+  navMenu.ariaHidden = "true";
+  navMenu.setAttribute("aria-labelledby", "nav__hamburger-btn");
+  for (const link of navLinks) {
+    link.tabIndex = -1;
+  }
+}
+
 hamburgerButton.addEventListener("click", toggleHamburgerMenuAndButton);
 navMenu.addEventListener("click", handleClickNavLink);
 document.addEventListener("keydown", handleEscapeKeypress);
+
+if (!mediaQueryMediumAndUp.matches) {
+  setInitialStateForHamburgerMenu();
+}
