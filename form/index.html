@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form class="form" novalidate>
+      <h2 class="form__title">Sign up</h2>
+      <div class="form__input-container">
+        <label for="username" class="form__label">Username</label>
+        <input
+          type="text"
+          class="form__input"
+          id="username"
+          pattern="\w{5,12}"
+          title="5 to 12 alphanumeric characters"
+          required
+        />
+        <p class="form__hint" id="usernameHint">
+          Must be alphanumeric and 5-12 characters long
+        </p>
+      </div>
+      <div class="form__input-container">
+        <label for="email" class="form__label">Email</label>
+        <input
+          type="email"
+          class="form__input"
+          id="email"
+          pattern="^[^@\s]+@[a-zA-Z]+\.com$"
+          title="valid email address, e.g. john123@yahoo.com"
+          required
+        />
+        <p class="form__hint" id="emailHint">
+          Must be valid email address, e.g. john123@yahoo.com
+        </p>
+      </div>
+      <div class="form__input-container">
+        <label for="password" class="form__label">Password</label>
+        <input
+          type="password"
+          class="form__input"
+          id="password"
+          pattern="[\w@.]{8,12}"
+          title="8 to 12 alphanumeric characters (can also have @, _, and .)"
+          required
+        />
+        <p class="form__hint" id="passwordHint">
+          Must be alphanumeric (can also have @, _, .) and 8-20 characters long
+        </p>
+      </div>
+      <div class="form__input-container">
+        <label for="confirmPassword" class="form__label"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          class="form__input"
+          id="confirmPassword"
+          title="Passwords must match"
+          required
+        />
+        <p class="form__hint" id="confirmPasswordHint">Passwords must match</p>
+      </div>
+      <fieldset class="form__fieldset">
+        <legend class="form__label">Gender</legend>
+        <div class="form__fieldset-controls">
+          <input type="radio" id="male" name="gender" value="male" required />
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">Female</label>
+          <input type="radio" id="other" name="gender" value="other" />
+          <label for="other">Other</label>
+        </div>
+        <p class="form__hint" id="genderHint">One option must be selected</p>
+      </fieldset>
+      <button class="form__button" type="submit">Sign up</button>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>
