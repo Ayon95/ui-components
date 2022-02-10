@@ -5,6 +5,7 @@ const leftHalfBar = document.querySelector(".bar--left");
 const rightHalfBar = document.querySelector(".bar--right");
 const navMenu = document.querySelector(".nav__list");
 const navLinks = document.getElementsByClassName("nav__link");
+const submenus = document.getElementsByClassName("submenu");
 
 const mediaQueryMediumAndUp = window.matchMedia("(min-width: 56.25em)");
 
@@ -48,12 +49,40 @@ function toggleHamburgerMenuAndButton() {
   }
 }
 
+function toggleSubmenuVisibility(topLevelLink, submenu) {
+  topLevelLink.ariaExpanded =
+    topLevelLink.ariaExpanded === "true" ? "false" : "true";
+  submenu.classList.toggle("visible");
+}
+
+function closeSubMenuOnFocusLoss(e) {
+  const submenuItem = e.target.parentElement;
+  // check whether the link that is about to lose focus is a submenu link or not
+  if (!submenuItem.classList.contains("submenu__item")) return;
+  // check whether or not the submenu item is the last item in the submenu
+  if (submenuItem.nextElementSibling) return;
+  const submenu = submenuItem.parentElement;
+  const topLevelLink = submenu.previousElementSibling;
+  toggleSubmenuVisibility(topLevelLink, submenu);
+}
+
 function handleClickNavLink(e) {
-  if (!e.target.classList.contains("nav__link")) return;
-  // if the screen is smaller than medium-sized screen
-  if (!mediaQueryMediumAndUp.matches) {
-    toggleHamburgerMenuAndButton();
+  const isLink =
+    e.target.classList.contains("nav__link") ||
+    e.target.classList.contains("submenu__link");
+  if (!isLink) return;
+  const navLink = e.target;
+  const isTopLevelLink =
+    navLink.parentElement.classList.contains("nav__item--submenu");
+  console.log(isTopLevelLink);
+  if (isTopLevelLink) {
+    // since the top-level link does not link to another page, we have to prevent the default action resulting from a link being clicked
+    e.preventDefault();
+    const submenu = navLink.nextElementSibling;
+    toggleSubmenuVisibility(navLink, submenu);
   }
+  if (mediaQueryMediumAndUp.matches || isTopLevelLink) return;
+  toggleHamburgerMenuAndButton();
 }
 
 function handleEscapeKeypress(e) {
@@ -69,17 +98,22 @@ function setInitialStateForHamburgerMenu() {
   }
 }
 
-hamburgerButton.addEventListener("click", toggleHamburgerMenuAndButton);
-navMenu.addEventListener("click", handleClickNavLink);
+function init() {
+  hamburgerButton.addEventListener("click", toggleHamburgerMenuAndButton);
+  navMenu.addEventListener("click", handleClickNavLink);
+  navMenu.addEventListener("focusout", closeSubMenuOnFocusLoss);
 
-document.addEventListener("keydown", function (e) {
-  const navMenuIsOpen = hamburgerButton.ariaExpanded === "true";
-  if (navMenuIsOpen) {
-    handleEscapeKeypress(e);
-    manageNavMenuFocus(e);
+  document.addEventListener("keydown", function (e) {
+    const navMenuIsOpen = hamburgerButton.ariaExpanded === "true";
+    if (navMenuIsOpen) {
+      handleEscapeKeypress(e);
+      manageNavMenuFocus(e);
+    }
+  });
+
+  if (!mediaQueryMediumAndUp.matches) {
+    setInitialStateForHamburgerMenu();
   }
-});
-
-if (!mediaQueryMediumAndUp.matches) {
-  setInitialStateForHamburgerMenu();
 }
+
+init();

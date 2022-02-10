@@ -69,6 +69,29 @@ header {
   font-size: 2.2rem;
 }
 
+.nav__item--submenu > .nav__link {
+  display: flex;
+  align-items: center;
+}
+
+.nav__item--submenu svg {
+  fill: currentColor;
+  margin-left: 5px;
+}
+
+.submenu {
+  display: none;
+  background-color: var(--color-primary);
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.submenu__item {
+  padding: 1rem;
+}
+
 /* Hamburger button */
 
 #nav__hamburger-btn {
@@ -112,7 +135,12 @@ header {
   border-radius: 0 var(--bar-border-radius) var(--bar-border-radius) 0;
 }
 
-/* Transformation utilities */
+/* Utilities */
+
+.visible {
+  display: block;
+}
+
 .rotate-down {
   transform: translateY(1.3rem) rotate(45deg);
 }
@@ -150,7 +178,28 @@ header {
     margin-right: var(--base-spacing);
   }
 
+  .nav__item--submenu {
+    position: relative;
+  }
+
+  .submenu {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: var(--color-primary);
+  }
+
   #nav__hamburger-btn {
     display: none;
+  }
+}
+
+@media only screen and (hover: hover) and (pointer: fine) {
+  .nav__item--submenu:hover > .submenu {
+    display: block;
+  }
+
+  .submenu__item:hover {
+    background-color: var(--color-nav-background);
   }
 }
