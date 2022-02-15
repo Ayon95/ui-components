@@ -47,9 +47,9 @@ function enhanceAccordionHeadings() {
 }
 
 function toggleAccordionPanel(e) {
-  const accordionButton = e.target;
+  const accordionButton = e.target.closest(".accordion__button");
   // If the event didn't occur on an accordion button, then don't do anything
-  if (!accordionButton.classList.contains("accordion__button")) return;
+  if (!accordionButton) return;
 
   const associatedPanelId = accordionButton.getAttribute("aria-controls");
   const associatedPanel = document.getElementById(associatedPanelId);
