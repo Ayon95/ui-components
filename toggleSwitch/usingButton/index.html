@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Dark mode toggle</title>
+  </head>
+  <body>
+    <main class="main">
+      <h1 class="main__title">Dark mode toggle button</h1>
+      <p class="main__description">
+        This toggle button is marked up using a <code>button</code> element. The
+        <code>aria-pressed</code> attribute is used on it to specify the state
+        of the toggle button (pressed or not pressed). The button has been
+        styled to make it look like a toggle switch.
+      </p>
+      <div class="toggle__container">
+        <span id="dark-mode">Dark mode</span>
+        <button
+          type="button"
+          class="toggle__button"
+          aria-pressed="false"
+          aria-labelledby="dark-mode"
+        >
+          <span>on</span>
+          <span>off</span>
+        </button>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>

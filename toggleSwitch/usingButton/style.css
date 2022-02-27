@@ -1,0 +1,97 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --toggle-border-radius: 10rem;
+  --toggle-transition-duration: 0.4s;
+  /* Light mode colors */
+  --color-white: #fff;
+  --color-black: #171717;
+  /* Dark mode colors */
+  --color-dark-grey: #242424;
+  --color-light-grey: #969696;
+  /* Colors */
+  --color-body-bg: var(--color-white);
+  --color-text: var(--color-black);
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: var(--color-body-bg);
+  color: var(--color-text);
+  font-size: 1.6rem;
+  font-family: "Arial", sans-serif;
+  transition: background-color var(--toggle-transition-duration),
+    color var(--toggle-transition-duration);
+}
+
+.main {
+  text-align: center;
+}
+.main__description {
+  max-width: 55ch;
+  margin: 1.5rem 0;
+  line-height: 1.5;
+}
+
+.toggle__button {
+  display: inline-flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0.7rem 1rem;
+  width: 7rem;
+  background-color: #d2d1e0;
+  border: none;
+  border-radius: 3rem;
+  font-size: 1.6rem;
+  font-family: "Arial", sans-serif;
+  transition: background-color var(--toggle-transition-duration),
+    color var(--toggle-transition-duration);
+}
+
+.toggle__button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #2746a8;
+  border-radius: 50%;
+  transition: transform var(--toggle-transition-duration);
+}
+
+.toggle__button[aria-pressed="true"]::before {
+  transform: translateX(100%);
+}
+
+.toggle__button[aria-pressed="true"] {
+  background-color: #070c1c;
+}
+
+.toggle__button[aria-pressed="true"] {
+  color: var(--color-white);
+}
+
+/* Focus styles will be shown when focusing with a keyboard */
+
+/*
+If the user's color scheme preference at the OS level is dark mode,
+and the user hasn't manually selected any mode or light mode for the website, then show dark mode colors.
+*/
+@media (prefers-color-scheme: dark) {
+}
