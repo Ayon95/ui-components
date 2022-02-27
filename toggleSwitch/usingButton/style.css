@@ -39,6 +39,11 @@ body {
     color var(--toggle-transition-duration);
 }
 
+.dark {
+  --color-body-bg: var(--color-dark-grey);
+  --color-text: var(--color-light-grey);
+}
+
 .main {
   text-align: center;
 }
@@ -48,6 +53,10 @@ body {
   line-height: 1.5;
 }
 
+#dark-mode-label {
+  margin-right: 5px;
+}
+
 .toggle__button {
   display: inline-flex;
   justify-content: space-between;
@@ -55,6 +64,7 @@ body {
   padding: 0.7rem 1rem;
   width: 7rem;
   background-color: #d2d1e0;
+  color: var(--color-text);
   border: none;
   border-radius: 3rem;
   font-size: 1.6rem;
@@ -81,10 +91,6 @@ body {
 
 .toggle__button[aria-pressed="true"] {
   background-color: #070c1c;
-}
-
-.toggle__button[aria-pressed="true"] {
-  color: var(--color-white);
 }
 
 /* Focus styles will be shown when focusing with a keyboard */
