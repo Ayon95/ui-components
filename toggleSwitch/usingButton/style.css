@@ -18,6 +18,7 @@
   /* Colors */
   --color-body-bg: var(--color-white);
   --color-text: var(--color-black);
+  --color-dark-blue: #2746a8;
 }
 
 html {
@@ -71,6 +72,7 @@ body {
   font-family: "Arial", sans-serif;
   transition: background-color var(--toggle-transition-duration),
     color var(--toggle-transition-duration);
+  cursor: pointer;
 }
 
 .toggle__button::before {
@@ -80,7 +82,7 @@ body {
   left: 0;
   width: 50%;
   height: 100%;
-  background-color: #2746a8;
+  background-color: var(--color-dark-blue);
   border-radius: 50%;
   transition: transform var(--toggle-transition-duration);
 }
@@ -95,9 +97,11 @@ body {
 
 /* Focus styles will be shown when focusing with a keyboard */
 
-/*
-If the user's color scheme preference at the OS level is dark mode,
-and the user hasn't manually selected any mode or light mode for the website, then show dark mode colors.
-*/
-@media (prefers-color-scheme: dark) {
+.toggle__button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.toggle__button:focus-visible {
+  outline-offset: 3px;
+  outline: 3px solid var(--color-dark-blue);
 }
