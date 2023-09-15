@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Responsive Table</title>
+  </head>
+  <body>
+    <main>
+      <h1>Responsive Table</h1>
+      <div
+        role="region"
+        aria-labelledby="premierLeagueChampionsTableCaption"
+        tabindex="0"
+      >
+        <table>
+          <caption id="premierLeagueChampionsTableCaption">
+            The last 4 Premier League champions
+          </caption>
+          <thead>
+            <tr>
+              <th>Club</th>
+              <th>Season</th>
+              <th>Points</th>
+              <th>Wins</th>
+              <th>Draws</th>
+              <th>Losses</th>
+              <th>Goals For</th>
+              <th>Goals Against</th>
+              <th>Goal Difference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-cell="club">Manchester City</td>
+              <td data-cell="season">2022/2023</td>
+              <td data-cell="points">89</td>
+              <td data-cell="wins">28</td>
+              <td data-cell="draws">5</td>
+              <td data-cell="losses">5</td>
+              <td data-cell="goals for">94</td>
+              <td data-cell="goals against">33</td>
+              <td data-cell="goal difference">61</td>
+            </tr>
+            <tr>
+              <td data-cell="club">Manchester City</td>
+              <td data-cell="season">2021/2022</td>
+              <td data-cell="points">93</td>
+              <td data-cell="wins">29</td>
+              <td data-cell="draws">6</td>
+              <td data-cell="losses">3</td>
+              <td data-cell="goals for">99</td>
+              <td data-cell="goals against">26</td>
+              <td data-cell="goal difference">73</td>
+            </tr>
+            <tr>
+              <td data-cell="club">Manchester City</td>
+              <td data-cell="season">2020/2021</td>
+              <td data-cell="points">86</td>
+              <td data-cell="wins">27</td>
+              <td data-cell="draws">5</td>
+              <td data-cell="losses">6</td>
+              <td data-cell="goals for">83</td>
+              <td data-cell="goals against">32</td>
+              <td data-cell="goal difference">51</td>
+            </tr>
+            <tr>
+              <td data-cell="club">Liverpool</td>
+              <td data-cell="season">2019/2020</td>
+              <td data-cell="points">99</td>
+              <td data-cell="wins">32</td>
+              <td data-cell="draws">3</td>
+              <td data-cell="losses">3</td>
+              <td data-cell="goals for">85</td>
+              <td data-cell="goals against">33</td>
+              <td data-cell="goal difference">52</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+  <script src="./index.js"></script>
+</html>

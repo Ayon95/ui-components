@@ -1,0 +1,96 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --border-radius: 4px;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  padding: 1rem;
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+  background-color: hsl(208, 100%, 92%);
+  overflow: hidden;
+}
+
+caption {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+th {
+  background-color: hsl(208, 63%, 75%);
+}
+
+th:first-of-type {
+  border-top-left-radius: var(--border-radius);
+}
+
+th:last-of-type {
+  border-top-right-radius: var(--border-radius);
+}
+
+th,
+td,
+caption {
+  padding: 1rem;
+}
+
+th,
+caption {
+  text-align: left;
+}
+
+tr:nth-of-type(2n) {
+  background-color: hsl(208, 63%, 86%);
+}
+
+@media only screen and (max-width: 750px) {
+  thead {
+    display: none;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: 16ch auto;
+    padding: 0.7rem 1rem;
+  }
+
+  td:first-child {
+    padding-top: 1.5rem;
+  }
+
+  td:last-child {
+    padding-bottom: 1.5rem;
+  }
+
+  td::before {
+    content: attr(data-cell) ": ";
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+}
