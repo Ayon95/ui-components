@@ -5,7 +5,6 @@ const leftHalfBar = document.querySelector(".bar--left");
 const rightHalfBar = document.querySelector(".bar--right");
 const navMenu = document.querySelector(".nav__list");
 const navLinks = document.getElementsByClassName("nav__link");
-const submenus = document.getElementsByClassName("submenu");
 
 const mediaQueryMediumAndUp = window.matchMedia("(min-width: 56.25em)");
 
@@ -19,11 +18,13 @@ const lastFocusableElement =
 // this function will trap focus within the hamburger menu
 function manageNavMenuFocus(e) {
   if (e.key !== "Tab") return;
+  // Pressing Shift + Tab and the first focusable element is in focus
   if (e.shiftKey) {
     if (document.activeElement === firstFocusableElement) {
       lastFocusableElement.focus();
       e.preventDefault();
     }
+    // Pressing Tab and the last focusable element is in focus
   } else {
     if (document.activeElement === lastFocusableElement) {
       firstFocusableElement.focus();
@@ -39,10 +40,8 @@ function toggleHamburgerMenuAndButton() {
   rightHalfBar.classList.toggle("disappear-to-right");
   navMenu.classList.toggle("enter-screen-from-right");
 
-  hamburgerButton.ariaExpanded =
-    hamburgerButton.ariaExpanded === "true" ? "false" : "true";
-
-  navMenu.ariaHidden = navMenu.ariaHidden === "true" ? "false" : "true";
+  toggleAriaProperty(navMenu, "aria-hidden");
+  toggleAriaProperty(hamburgerButton, "aria-expanded");
 
   for (const link of navLinks) {
     link.tabIndex = link.tabIndex === -1 ? 0 : -1;
@@ -50,9 +49,14 @@ function toggleHamburgerMenuAndButton() {
 }
 
 function toggleSubmenuVisibility(topLevelLink, submenu) {
-  topLevelLink.ariaExpanded =
-    topLevelLink.ariaExpanded === "true" ? "false" : "true";
+  toggleAriaProperty(topLevelLink, "aria-expanded");
   submenu.classList.toggle("visible");
+}
+
+function toggleAriaProperty(element, property) {
+  const ariaValue =
+    element.getAttribute(property) === "true" ? "false" : "true";
+  element.setAttribute(property, ariaValue);
 }
 
 function closeSubMenuOnFocusLoss(e) {
@@ -74,7 +78,7 @@ function handleClickNavLink(e) {
   const navLink = e.target;
   const isTopLevelLink =
     navLink.parentElement.classList.contains("nav__item--submenu");
-  console.log(isTopLevelLink);
+
   if (isTopLevelLink) {
     // since the top-level link does not link to another page, we have to prevent the default action resulting from a link being clicked
     e.preventDefault();
@@ -91,7 +95,7 @@ function handleEscapeKeypress(e) {
 }
 
 function setInitialStateForHamburgerMenu() {
-  navMenu.ariaHidden = "true";
+  navMenu.setAttribute("aria-hidden", "true");
   navMenu.setAttribute("aria-labelledby", "nav__hamburger-btn");
   for (const link of navLinks) {
     link.tabIndex = -1;
@@ -104,7 +108,8 @@ function init() {
   navMenu.addEventListener("focusout", closeSubMenuOnFocusLoss);
 
   document.addEventListener("keydown", function (e) {
-    const navMenuIsOpen = hamburgerButton.ariaExpanded === "true";
+    const navMenuIsOpen =
+      hamburgerButton.getAttribute("aria-expanded") === "true";
     if (navMenuIsOpen) {
       handleEscapeKeypress(e);
       manageNavMenuFocus(e);
